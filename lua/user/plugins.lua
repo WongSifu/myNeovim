@@ -116,4 +116,8 @@ return packer.startup(function(use)
     requires = { "nvim-lua/plenary.nvim" },
   })
 
+  -- Which Key
+  use("folke/which-key.nvim")
+
+
 end)
