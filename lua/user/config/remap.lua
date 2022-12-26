@@ -77,3 +77,5 @@ keymap("c", "<C-j>", 'pumvisible() ? "\\<C-n>" : "\\<C-j>"', { expr = true, nore
 keymap("c", "<C-k>", 'pumvisible() ? "\\<C-p>" : "\\<C-k>"', { expr = true, noremap = true })
 --
 
+
+keymap("n", "<leader>h", "<cmd>noh<cr>", opts)
