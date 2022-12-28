@@ -1,4 +1,6 @@
 local lsp = require("lsp-zero")
+local null_ls = require('null-ls')
+local mason_nullls = require("mason-null-ls")
 
 lsp.preset("recommended")
 
@@ -22,8 +24,25 @@ lsp.configure('sumneko_lua', {
   }
 })
 
+local status_ok, cmp = pcall(require, "cmp")
+if not status_ok then
+  print("could not find cmp")
+  return
+end
 
-local cmp = require('cmp')
+function dump(o)
+  if type(o) == 'table' then
+    local s = '{ '
+    for k, v in pairs(o) do
+      if type(k) ~= 'number' then k = '"' .. k .. '"' end
+      s = s .. '[' .. k .. '] = ' .. dump(v) .. ','
+    end
+    return s .. '} '
+  else
+    return tostring(o)
+  end
+end
+
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local cmp_mappings = lsp.defaults.cmp_mappings({
   ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
@@ -32,14 +51,21 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
   ["<C-Space>"] = cmp.mapping.complete(),
 })
 
+
 -- disable completion with tab
 -- this helps with copilot setup
+-- cmp_mappings['<Tab>'] = cmp.mapping(function(fallback)
+--       print("fallback:", dump(fallback()))
+--       fallback()
+--     end)
 cmp_mappings['<Tab>'] = nil
 cmp_mappings['<S-Tab>'] = nil
 
+
 lsp.setup_nvim_cmp({
-  mapping = cmp_mappings
+  mapping = cmp_mappings,
 })
+
 
 lsp.set_preferences({
   suggest_lsp_servers = false,
@@ -51,7 +77,7 @@ lsp.set_preferences({
   }
 })
 
-
+-- For LSP Signature
 local cfg = {
   debug = false, -- set to true to enable debug logging
   log_path = vim.fn.stdpath("cache") .. "/lsp_signature.log", -- log dir when debug is on
@@ -110,10 +136,6 @@ local cfg = {
 
 require 'lsp_signature'.setup(cfg) -- no need to specify bufnr if you don't use toggle_key
 
-
-
-
-
 lsp.on_attach(function(client, bufnr)
   local opts = { buffer = bufnr, remap = false }
 
@@ -121,7 +143,6 @@ lsp.on_attach(function(client, bufnr)
     vim.cmd.LspStop('eslint')
     return
   end
-
 
   vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
   vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
@@ -133,11 +154,19 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set("n", "<leader>vrr", vim.lsp.buf.references, opts)
   vim.keymap.set("n", "<leader>vrn", vim.lsp.buf.rename, opts)
   vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
-
-
 end)
 
+
 lsp.setup()
+
+--  NULL LS
+mason_nullls.setup({
+  automatic_installation = true,
+  automatic_setup = true,
+})
+mason_nullls.setup_handlers({})
+
+
 
 vim.diagnostic.config({
   virtual_text = true,
@@ -146,6 +175,7 @@ vim.diagnostic.config({
 
 -- Format on save
 vim.cmd([[autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()]])
+vim.keymap.set("n", "<leader>ft", vim.lsp.buf.format)
 
 -- recommended:
 -- require 'lsp_signature'.setup(cfg) -- no need to specify bufnr if you don't use toggle_key

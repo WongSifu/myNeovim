@@ -47,10 +47,6 @@ return packer.startup(function(use)
     requires = "kyazdani42/nvim-web-devicons",
   })
 
-  -- Tokyonight (Theme)
-  use 'folke/tokyonight.nvim'
-
-  use { 'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons' }
 
   use({ 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' })
   use({ 'nvim-treesitter/nvim-treesitter-textobjects', run = ':TSUpdate' })
@@ -63,10 +59,11 @@ return packer.startup(function(use)
     'VonHeikemen/lsp-zero.nvim',
     requires = {
       -- LSP Support
+      -- 
       { 'neovim/nvim-lspconfig' },
       { 'williamboman/mason.nvim' },
       { 'williamboman/mason-lspconfig.nvim' },
-      { "ray-x/lsp_signature.nvim" },
+
       -- Autocompletion
       { 'hrsh7th/nvim-cmp' },
       { 'hrsh7th/cmp-buffer' },
@@ -88,6 +85,7 @@ return packer.startup(function(use)
   use({
     "ray-x/go.nvim",
     "ray-x/guihua.lua",
+     "ray-x/lsp_signature.nvim",
   })
 
   -- Zen Mode
@@ -119,6 +117,15 @@ return packer.startup(function(use)
 
   -- Which Key
   use("folke/which-key.nvim")
+
+  -- Tokyonight (Theme)
+  use 'folke/tokyonight.nvim'
+
+  -- Buffer Line
+  use { 'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons' }
+
+  -- Null ls
+  use { 'jay-babu/mason-null-ls.nvim'}
 
 
 end)

@@ -92,8 +92,8 @@ telescope.setup({
         -- ["<C-d>"] = actions.preview_scrolling_down,
 
         -- ["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
-        ["<Tab>"] = actions.close,
-        ["<S-Tab>"] = actions.close,
+        -- ["<Tab>"] = actions.close,
+        -- ["<S-Tab>"] = actions.close,
         -- ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
         ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
         ["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
