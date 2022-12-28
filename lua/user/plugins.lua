@@ -63,6 +63,8 @@ return packer.startup(function(use)
       { 'neovim/nvim-lspconfig' },
       { 'williamboman/mason.nvim' },
       { 'williamboman/mason-lspconfig.nvim' },
+      { 'jay-babu/mason-null-ls.nvim'},
+      {'jose-elias-alvarez/null-ls.nvim'},
 
       -- Autocompletion
       { 'hrsh7th/nvim-cmp' },
@@ -124,8 +126,6 @@ return packer.startup(function(use)
   -- Buffer Line
   use { 'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons' }
 
-  -- Null ls
-  use { 'jay-babu/mason-null-ls.nvim'}
 
 
 end)
