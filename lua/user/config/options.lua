@@ -59,5 +59,3 @@ colorscheme tokyonight
 ]])
 
 
--- Format on save
-vim.cmd([[autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()]])
