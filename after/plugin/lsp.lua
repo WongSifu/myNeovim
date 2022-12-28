@@ -166,8 +166,6 @@ mason_nullls.setup({
 })
 mason_nullls.setup_handlers({})
 
-
-
 vim.diagnostic.config({
   virtual_text = true,
 })

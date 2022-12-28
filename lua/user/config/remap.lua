@@ -78,7 +78,10 @@ keymap("c", "<C-k>", 'pumvisible() ? "\\<C-p>" : "\\<C-k>"', { expr = true, nore
 
 keymap("n", "Q", "<cmd>noh<cr>", opts)
 
--- keymap("i", "<Tab>", "<Tab>", opts)
+keymap("i", "<Tab>", "<Tab>", opts)
+keymap("i", "<S-Tab>", "<S-Tab>", opts)
+
+
 
 
 
