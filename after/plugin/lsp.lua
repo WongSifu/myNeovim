@@ -153,6 +153,7 @@ lsp.setup()
 
 --  NULL LS
 mason_nullls.setup({
+  ensure_installed = { "prettier", "golangci-lint", "stylua", "jq", "black", "sql_formatter" },
   automatic_installation = true,
   automatic_setup = true,
 })
