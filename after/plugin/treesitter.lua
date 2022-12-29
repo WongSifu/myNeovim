@@ -16,6 +16,16 @@ ts.setup {
   -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
   auto_install = true,
 
+  -- windwp plugin
+  autotag = { enable = true },
+
+  -- p00f/nvim-ts-rainbow
+  rainbow = {
+    enable = true,
+    extended_mode = true,
+    max_file_lines = nil,
+  },
+
   highlight = {
     -- `false` will disable the whole extension
     enable = true,

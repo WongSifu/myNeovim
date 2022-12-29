@@ -62,8 +62,6 @@ return packer.startup(function(use)
 
   use { 'nvim-treesitter/playground' }
 
-
-
   use('theprimeagen/harpoon')
   use('mbbill/undotree')
   use('tpope/vim-fugitive')
@@ -72,12 +70,12 @@ return packer.startup(function(use)
     'VonHeikemen/lsp-zero.nvim',
     requires = {
       -- LSP Support
-      --
       { 'neovim/nvim-lspconfig' },
       { 'williamboman/mason.nvim' },
       { 'williamboman/mason-lspconfig.nvim' },
       { 'jay-babu/mason-null-ls.nvim' },
       { 'jose-elias-alvarez/null-ls.nvim' },
+      { "ray-x/lsp_signature.nvim" },
 
       -- Autocompletion
       { 'hrsh7th/nvim-cmp' },
@@ -100,7 +98,6 @@ return packer.startup(function(use)
   use({
     "ray-x/go.nvim",
     "ray-x/guihua.lua",
-    "ray-x/lsp_signature.nvim",
   })
 
   -- Zen Mode
@@ -123,6 +120,12 @@ return packer.startup(function(use)
 
   -- autopair
   use("windwp/nvim-autopairs")
+
+  -- Autotags
+  use({ 'windwp/nvim-ts-autotag' })
+
+  -- Color Brackets
+  use({ 'p00f/nvim-ts-rainbow' })
 
   -- git labels
   use({
