@@ -86,5 +86,5 @@ keymap("i", "<S-Tab>", "<S-Tab>", opts)
 keymap("x", "<leader>p", [["_dP]], opts)
 
 -- Up/Down then center
-keymap("n", "<C-d>", "<C-d>zz", opts)
-keymap("n", "<C-u>", "<C-u>zz", opts)
+-- keymap("n", "<C-d>", "<C-d>zz", opts)
+-- keymap("n", "<C-u>", "<C-u>zz", opts)
