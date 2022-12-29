@@ -30,19 +30,6 @@ if not status_ok then
   return
 end
 
-function dump(o)
-  if type(o) == 'table' then
-    local s = '{ '
-    for k, v in pairs(o) do
-      if type(k) ~= 'number' then k = '"' .. k .. '"' end
-      s = s .. '[' .. k .. '] = ' .. dump(v) .. ','
-    end
-    return s .. '} '
-  else
-    return tostring(o)
-  end
-end
-
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local cmp_mappings = lsp.defaults.cmp_mappings({
   ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
@@ -145,6 +132,7 @@ lsp.on_attach(function(client, bufnr)
   end
 
   vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+  vim.keymap.set("n", "gI", vim.lsp.buf.implementation, opts)
   vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
   vim.keymap.set("n", "<leader>vws", vim.lsp.buf.workspace_symbol, opts)
   vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
@@ -152,7 +140,7 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set("n", "]d", vim.diagnostic.goto_prev, opts)
   vim.keymap.set("n", "<leader>vca", vim.lsp.buf.code_action, opts)
   vim.keymap.set("n", "<leader>vrr", vim.lsp.buf.references, opts)
-  vim.keymap.set("n", "<leader>vrn", vim.lsp.buf.rename, opts)
+  vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, opts)
   vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
 end)
 

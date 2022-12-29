@@ -78,10 +78,13 @@ keymap("c", "<C-k>", 'pumvisible() ? "\\<C-p>" : "\\<C-k>"', { expr = true, nore
 
 keymap("n", "Q", "<cmd>noh<cr>", opts)
 
+-- There is something off with the CMP settings, so this has to be set again
 keymap("i", "<Tab>", "<Tab>", opts)
 keymap("i", "<S-Tab>", "<S-Tab>", opts)
 
+-- Paste
+keymap("x", "<leader>p", [["_dP]], opts)
 
-
-
-
+-- Up/Down then center
+keymap("n", "<C-d>", "<C-d>zz", opts)
+keymap("n", "<C-u>", "<C-u>zz", opts)

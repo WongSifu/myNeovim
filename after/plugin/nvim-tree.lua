@@ -14,16 +14,16 @@ end
 
 local tree_cb = nvim_tree_config.nvim_tree_callback
 
-local utils = require("nvim-tree.utils")
+-- local utils = require("nvim-tree.utils")
 
 ---@diagnostic disable-next-line: unused-local
-local function notify_level(level)
-  return function(msg)
-    vim.schedule(function()
-      vim.api.nvim_echo({ { msg, "WarningMsg" } }, false, {})
-    end)
-  end
-end
+-- local function notify_level(level)
+--   return function(msg)
+--     vim.schedule(function()
+--       vim.api.nvim_echo({ { msg, "WarningMsg" } }, false, {})
+--     end)
+--   end
+-- end
 
 --utils.notify.warn = notify_level(vim.log.levels.WARN)
 --utils.notify.error = notify_level(vim.log.levels.ERROR)

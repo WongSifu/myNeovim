@@ -47,13 +47,22 @@ return packer.startup(function(use)
     requires = "kyazdani42/nvim-web-devicons",
   })
 
+  -- Treesitter
+  use { -- Highlight, edit, and navigate code
+    'nvim-treesitter/nvim-treesitter',
+    run = function()
+      pcall(require('nvim-treesitter.install').update { with_sync = true })
+    end,
+  }
 
-  use({ 'nvim-treesitter/nvim-treesitter',
-  requires = {
-    { 'nvim-treesitter/nvim-treesitter-textobjects'},
-    {'nvim-treesitter/playground'}
-  },
-  run = ':TSUpdate' })
+  use { -- Additional text objects via treesitter
+    'nvim-treesitter/nvim-treesitter-textobjects',
+    after = 'nvim-treesitter',
+  }
+
+  use { 'nvim-treesitter/playground' }
+
+
 
   use('theprimeagen/harpoon')
   use('mbbill/undotree')
@@ -63,12 +72,12 @@ return packer.startup(function(use)
     'VonHeikemen/lsp-zero.nvim',
     requires = {
       -- LSP Support
-      -- 
+      --
       { 'neovim/nvim-lspconfig' },
       { 'williamboman/mason.nvim' },
       { 'williamboman/mason-lspconfig.nvim' },
-      { 'jay-babu/mason-null-ls.nvim'},
-      {'jose-elias-alvarez/null-ls.nvim'},
+      { 'jay-babu/mason-null-ls.nvim' },
+      { 'jose-elias-alvarez/null-ls.nvim' },
 
       -- Autocompletion
       { 'hrsh7th/nvim-cmp' },
@@ -91,7 +100,7 @@ return packer.startup(function(use)
   use({
     "ray-x/go.nvim",
     "ray-x/guihua.lua",
-     "ray-x/lsp_signature.nvim",
+    "ray-x/lsp_signature.nvim",
   })
 
   -- Zen Mode
