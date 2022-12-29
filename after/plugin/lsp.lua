@@ -1,6 +1,4 @@
 local lsp = require("lsp-zero")
-local null_ls = require('null-ls')
-local mason_nullls = require("mason-null-ls")
 
 lsp.preset("recommended")
 
@@ -131,6 +129,14 @@ lsp.on_attach(function(client, bufnr)
     return
   end
 
+  -- if client.name == "volar" or client.name == "tsserver" then
+  if client.name == "tsserver" then
+    client.server_capabilities.documentFormattingProvider = false
+    client.server_capabilities.documentFormattingRangeProvider = false
+  end
+
+
+
   -- vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
   vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
   vim.keymap.set("n", "gD", "<cmd>Telescope lsp_declarations<CR>", opts)
@@ -151,7 +157,12 @@ end)
 
 lsp.setup()
 
+
 --  NULL LS
+local null_ls = require('null-ls')
+null_ls.setup({})
+
+local mason_nullls = require("mason-null-ls")
 mason_nullls.setup({
   ensure_installed = { "prettier", "golangci-lint", "stylua", "jq", "black", "sql_formatter" },
   automatic_installation = true,
