@@ -39,3 +39,9 @@ tnight.setup({
   ---@param colors ColorScheme
   on_highlights = function(highlights, colors) end,
 })
+
+vim.cmd([[
+let g:tokyonight_transparent = 1
+colorscheme tokyonight
+]])
+

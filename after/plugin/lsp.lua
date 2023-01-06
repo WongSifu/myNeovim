@@ -36,12 +36,6 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
   ["<C-Space>"] = cmp.mapping.complete(),
 })
 
--- disable completion with tab
--- this helps with copilot setup
--- cmp_mappings['<Tab>'] = cmp.mapping(function(fallback)
---       print("fallback:", dump(fallback()))
---       fallback()
---     end)
 cmp_mappings["<Tab>"] = nil
 cmp_mappings["<S-Tab>"] = nil
 
@@ -121,10 +115,10 @@ require("lsp_signature").setup(cfg) -- no need to specify bufnr if you don't use
 lsp.on_attach(function(client, bufnr)
   local opts = { buffer = bufnr, remap = false }
 
-  if client.name == "eslint" then
-    vim.cmd.LspStop("eslint")
-    return
-  end
+  -- if client.name == "eslint" then
+  --   vim.cmd.LspStop("eslint")
+  --   return
+  -- end
 
   -- if client.name == "volar" or client.name == "tsserver" then
   if client.name == "tsserver" then
@@ -132,18 +126,14 @@ lsp.on_attach(function(client, bufnr)
     client.server_capabilities.documentFormattingRangeProvider = false
   end
 
-  -- vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
   vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
   vim.keymap.set("n", "gD", "<cmd>Telescope lsp_declarations<CR>", opts)
-  -- vim.keymap.set("n", "gI", vim.lsp.buf.implementation, opts)
   vim.keymap.set("n", "gI", "<cmd>Telescope lsp_implementations<CR>", opts)
   vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
   vim.keymap.set("n", "<leader>vws", vim.lsp.buf.workspace_symbol, opts)
   vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
   vim.keymap.set("n", "[d", vim.diagnostic.goto_next, opts)
   vim.keymap.set("n", "]d", vim.diagnostic.goto_prev, opts)
-  vim.keymap.set("n", "<leader>vca", vim.lsp.buf.code_action, opts)
-  -- vim.keymap.set("n", "<leader>lr", vim.lsp.buf.references, opts)
   vim.keymap.set("n", "<leader>lr", "<cmd>Telescope lsp_references<CR>", opts)
   vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, opts)
   vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
@@ -158,6 +148,7 @@ mason_nullls.setup({
   automatic_installation = true,
   automatic_setup = true,
 })
+
 local null_ls = require("null-ls")
 null_ls.setup({})
 

@@ -1,6 +1,6 @@
 local options = {
-  cmdheight = 0, -- more space in the neovim command line for displaying messages
-  completeopt = { "menuone", "noselect", "menu" }, -- mostly just for cmp
+  cmdheight = 1, -- more space in the neovim command line for displaying messages
+  completeopt = { "menuone", "noselect" }, -- mostly just for cmp
   conceallevel = 0, -- so that `` is visible in markdown files
   fileencoding = "utf-8", -- the encoding written to a file
   hidden = true, -- required to keep multiple buffers and open multiple buffers
@@ -33,19 +33,16 @@ local options = {
   spell = false,
   spelllang = "en_us",
   colorcolumn = "80",
-
   backup = false, -- creates a backup file
   writebackup = false, -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
   clipboard = "unnamedplus", -- allows neovim to access the system clipboard
   undodir = os.getenv("HOME") .. "/.nvim/undodir",
   undofile = true,
   swapfile = false, -- creates a swapfile
-
 }
 
-vim.opt.shortmess:append("c")
+-- vim.opt.shortmess:append("c")
 
 for k, v in pairs(options) do
   vim.opt[k] = v
 end
-
